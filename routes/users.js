@@ -9,7 +9,7 @@ router.get('/sign_up', function(req, res, next) {
 router.post('/sign_up', function(req, res, next) {
   let body = req.body;
 
-  models.user.create({
+  let result = models.user.create({
     name: body.userName,
     email: body.userEmail,
     password: body.password
