@@ -29,6 +29,9 @@ router.post('/sign_up', function(req, res, next) {
 
 
   router.get('/', function(req, res, next) {
+    if (req.cookies) {
+      console.log(req.cookies);
+    }
     res.send('환영합니다');
   });
 
@@ -52,7 +55,13 @@ router.post('/sign_up', function(req, res, next) {
 
     if(dbPassword === hashPassword){
         console.log("비밀번호 일치");
-        res.redirect("/user");
+
+        res.cookie('user', body.userEmail, {
+          expires: new Date(Date.now() + 9000000),
+          httpOnly: true
+        });
+        res.redirect('/user');
+
     }
     else{
         console.log("비밀번호 불일치");
