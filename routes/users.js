@@ -36,7 +36,11 @@ router.post('/sign_up', function(req, res, next) {
   });
 
   router.get('/login', function(req, res, next) {
-    res.render('user/login');
+      let session = req.session;
+
+      res.render('user/login', {
+        session : session
+      });
   });
 
   router.post('/login', async function(req, res, next) {
@@ -56,17 +60,12 @@ router.post('/sign_up', function(req, res, next) {
     if(dbPassword === hashPassword){
         console.log("비밀번호 일치");
 
-        res.cookie('user', body.userEmail, {
-          expires: new Date(Date.now() + 9000000),
-          httpOnly: true
-        });
-        res.redirect('/user');
-
+        req.session.email = body.userEmail;
     }
     else{
         console.log("비밀번호 불일치");
-        res.redirect("/user/login");
   }
+  res.redirect('/user/login');
 });
 
 module.exports = router;
