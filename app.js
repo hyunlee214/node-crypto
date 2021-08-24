@@ -5,8 +5,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const session = require('express-session');
 const models = require('./models/index.js');
+const session = require('express-session');
 
 
 const indexRouter = require('./routes/index');
@@ -29,7 +29,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   key: 'sid',
   secret: 'secret',
@@ -39,9 +38,11 @@ app.use(session({
     maxAge: 24000 * 60 * 60 
   }
 }));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 
 // catch 404 and forward to error handler

@@ -20,8 +20,8 @@ router.post('/sign_up', async function(req, res, next) {
 
   let result = models.user.create({
     name: body.userName,
-    email: body.userEmail,
-    password: body.password,
+    email: body.userEmail,   
+    password: hashPassword,                // password: body.password,
     salt: salt                    
   })
     res.redirect('/users/sign_up');
@@ -65,8 +65,8 @@ router.post('/sign_up', async function(req, res, next) {
     }
     else{
         console.log("비밀번호 불일치");
+        res.redirect('/user/login');
   }
-  res.redirect('/user/login');
 });
 
 module.exports = router;
