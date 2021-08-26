@@ -1,9 +1,9 @@
-const express = require('express');
-const path = require('path');
-const router = express.Router();
-const multer = require('multer');
+const express     = require('express');
+const path        = require('path');
+const router      = express.Router();
+const multer      = require('multer');
 
-let stroage = multer.diskStorage({
+let stroage   = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, 'upload/')
   },
@@ -12,7 +12,7 @@ let stroage = multer.diskStorage({
   }
 })
 
-let upload = multer({ storage: stroage });
+let upload    = multer({ storage: stroage });
 
 
 router.get('/page', function(req, res, next) {
