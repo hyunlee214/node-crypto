@@ -19,12 +19,13 @@ router.post('/sign_up', async function(req, res, next) {
   // 암호화 강화를 위해 'sha512 알고리즘' 사용
 
   let result = models.user.create({
-    name: body.userName,
+    name: body.userName,  
     email: body.userEmail,   
-    password: hashPassword,                // password: body.password,
+    password: hashPassword,                
+    //password:body.password,                  
     salt: salt                    
   })
-    res.redirect('/users/sign_up');
+    res.redirect('/user/sign_up');
   })
 
 
