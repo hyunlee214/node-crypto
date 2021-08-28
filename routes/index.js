@@ -68,7 +68,7 @@ router.get('/board/:id', function(req, res, next) {
 });
 
 router.put('/board/:id', function(req, res, next) {
-    let PostID = req.params.id;
+    let postID = req.params.id;
     let body = req.body;
 
     models.post.update({
