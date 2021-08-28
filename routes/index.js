@@ -51,6 +51,21 @@ router.post('/board', function(req, res, next) {
         })
 });
 
+router.get('/board/:id', function(req, res, next) {
+    let postID = req.params.id;
+
+    models.post.findOne({
+        where: {id: postID}
+    })
+        .then(result => {
+            res.render('edit', {
+                post: result
+            });
+        })
+        .catch(err => {
+            console.log('data confirm failed');
+        });
+});
 
 
 

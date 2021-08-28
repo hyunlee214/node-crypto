@@ -31,6 +31,11 @@
               <td><%= post.title %></td>
               <td><%= post.writer %></td>
               <td><%= post.createdAt %></td>
+              <td><button ><a href="/board/<%=post.id%>">수정하기</a></button></td>
+            
+            <form action="/board/<%=post.id%>?_method=DELETE" method="post">
+                <td><input type="submit" value="삭제하기"></input></td>
+            </form>
           </tr>
       <% } %>
   </table>
