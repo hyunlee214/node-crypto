@@ -51,6 +51,7 @@ router.post('/board', function(req, res, next) {
         })
 });
 
+// 데이터 수정 구현
 router.get('/board/:id', function(req, res, next) {
     let postID = req.params.id;
 
@@ -83,6 +84,21 @@ router.put('/board/:id', function(req, res, next) {
         })
         .catch( err => {
             console.log("데이터 수정 실패");
+        });
+});
+
+//데이터 삭제 구현
+router.delete('/board/:id', function(req, res, next) {
+    let postID = req.params.id;
+
+    models.post.destroy({
+        where :{id: postID}
+    })
+        .then(result => {
+            res.redirect('/board')
+        })
+        .catch(err => {
+            console.log('data delete failed');
         });
 });
 
