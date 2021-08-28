@@ -21,7 +21,25 @@ const router = express.Router();
 router.get('/board', function(req, res, next) {
     res.render('board');
 });
+// BOARD 데이터 추가 구현 - Sequelize사용
+router.post('/board', function(req, res, next) {
+    let body = req.body;
 
+    models.post.create({
+        title: body.inputTitle,
+        writer: body.inputWriter
+    })
+        .then( result => {
+            console.log('data add complete');
+            res.redirect('/board');
+        })
+        .catch(err => {
+            console.log('data add failed');
+        })
+});
+
+
+// 검색 기능 경로등록 
 router.get("/likeSearch/:searchWord", function(req, res, next){
   let searchWord = req.params.searchWord  
 
