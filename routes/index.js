@@ -67,6 +67,26 @@ router.get('/board/:id', function(req, res, next) {
         });
 });
 
+router.put('/board/:id', function(req, res, next) {
+    let PostID = req.params.id;
+    let body = req.body;
+
+    models.post.update({
+        title: body.editTitle,
+        writer: body.editWriter
+    },{
+        where: {id: postID}
+    })
+        .then( result => {
+            console.log("데이터 수정 완료");
+            res.redirect("/board");
+        })
+        .catch( err => {
+            console.log("데이터 수정 실패");
+        });
+});
+
+
 
 
 // 검색 기능 경로등록 

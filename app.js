@@ -1,17 +1,18 @@
 "use strict";
 
-const createError   = require('http-errors');
-const express       = require('express');
-const path          = require('path');
-const cookieParser  = require('cookie-parser');
-const logger        = require('morgan');
-const models        = require('./models/index.js');
-const session       = require('express-session');
+const createError    = require('http-errors');
+const express        = require('express');
+const path           = require('path');
+const cookieParser   = require('cookie-parser');
+const logger         = require('morgan');
+const models         = require('./models/index.js');
+const session        = require('express-session');
+const methodOverride = require('method-override');
 
 
-const indexRouter   = require('./routes/index');
-const usersRouter   = require('./routes/users');
-const uploadRouter  = require('./routes/upload');
+const indexRouter    = require('./routes/index');
+const usersRouter    = require('./routes/users');
+const uploadRouter   = require('./routes/upload');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use(cookieParser())
+  .use(methodOverride('_method'))
   .use(session({
   key: 'sid',
   secret: 'secret',
@@ -42,7 +44,7 @@ app
   }
 }))
   .use(express.static(path.join(__dirname, 'public')))
-
+  
 
   .use('/', indexRouter)
   .use('/user', usersRouter)
