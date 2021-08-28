@@ -17,6 +17,11 @@ const Op = sequelize.Op;
 
 const router = express.Router();
 
+// BOARD MAIN 경로등록
+router.get('/board', function(req, res, next) {
+    res.render('board');
+});
+
 router.get("/likeSearch/:searchWord", function(req, res, next){
   let searchWord = req.params.searchWord  
 
