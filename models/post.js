@@ -11,5 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     }
   });
+
+  //게시글 아래 댓글 구현
+  post.associate = function(models) {
+    post.hasMany(models.reply);
+  };
+
   return post;
 }
