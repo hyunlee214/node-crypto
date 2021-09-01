@@ -102,8 +102,27 @@ router.delete('/board/:id', function(req, res, next) {
         });
 });
 
+// reply 등록 기능
+router.post('/reply/:postID', function(req, res, next) {
+    let postID = req.params.postID;
+    let body = req.body;
+
+    models.reply.create({
+       postId: postID, 
+       writer: body.replyWriter,
+       content: body.replyContent
+    })
+    .then (result => {
+        res.redirect('/board');
+    })
+    .catch(err => {
+        console.log(err);
+    });
+})
 
 
+
+// ------------------------------------------------
 
 // 검색 기능 경로등록 
 router.get("/likeSearch/:searchWord", function(req, res, next){
