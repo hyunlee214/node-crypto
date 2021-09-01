@@ -20,24 +20,36 @@
     <input type="submit" value="전송하기">
     </form>
     <hr>
-    <table>
-      <tr>
-          <td>제목</td>
-          <td>작성자</td>
-          <td>작성일</td>
-      </tr>
-      <% for(let post of posts) { %>
+    <% for(let post of posts) { %>
+      <table>
+          <tr>
+              <td>제목</td>
+              <td>작성자</td>
+              <td>작성일</td>
+          </tr>
           <tr>
               <td><%= post.title %></td>
               <td><%= post.writer %></td>
               <td><%= post.createdAt %></td>
               <td><button ><a href="/board/<%=post.id%>">수정하기</a></button></td>
-            
-            <form action="/board/<%=post.id%>?_method=DELETE" method="post">
-                <td><input type="submit" value="삭제하기"></input></td>
-            </form>
+  
+              <form action="/board/<%=post.id%>?_method=DELETE" method="post">
+                  <td><input type="submit" value="삭제하기"></input></td>
+              </form>
           </tr>
-      <% } %>
+  
+          <form action="/reply/<%=post.id%>" method="post">
+              <tr>
+                  <td><input type="text" name="replyWriter" placeholder="작성자 입력"></td>
+                  <td><input type="text" name="replyContent" placeholder="내용 입력"></td>
+              </tr>
+              <tr>
+                  <td><input type="submit" value="댓글등록"></td>
+              </tr>
+          </form>
+      </table>
+      <hr>
+  <% } %>
   </table>
   </body>
 </html>
