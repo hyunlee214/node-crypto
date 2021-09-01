@@ -22,17 +22,39 @@ const router = express.Router();
 //     res.render('board');
 // });
 
+
 // BOARD MAIN 경로등록2 , 
 // post테이블에 있는 데이터 제공 구현 
-router.get('/board', function(req, res, next) {
-    models.post.findAll().then(result => {
-        res.render('board', {
-            posts: result
-        });
+
+// router.get('/board', function(req, res, next) {
+//     models.post.findAll().then(result => {
+//         res.render('board', {
+//             posts: result
+//         });
+//     });
+// });
+
+router.get('/board', async function(req, res, next) {
+    let result = await models.post.findAll();
+    if (result){
+      for(let post of result){
+        let result2 = await models.post.findOne({
+          include: {
+            model: models.reply,
+            where: {
+              postId: post.id
+            }
+          }
+        })
+        if(result2){
+          post.replies = result2.replies
+        }
+      } 
+    }
+    res.render('board', {
+      posts : result
     });
-});
-
-
+  });
 
 // BOARD 데이터 추가 구현 - Sequelize사용
 router.post('/board', function(req, res, next) {

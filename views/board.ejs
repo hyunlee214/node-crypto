@@ -47,6 +47,14 @@
                   <td><input type="submit" value="댓글등록"></td>
               </tr>
           </form>
+          <% if(post.replies){
+            for(let reply of post.replies){ %>
+            <tr>
+                <td><%= reply.dataValues.writer %></td>
+                <td><%= reply.dataValues.content %></td>
+            </tr>
+            <% } %>
+        <% } %>
       </table>
       <hr>
   <% } %>
