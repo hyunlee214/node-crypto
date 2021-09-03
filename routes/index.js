@@ -170,8 +170,15 @@ router.get('/orSearch/:searchWord', function(req, res, next) {
         where : {
             [Op.or]: [
                 {
-                    postName: searchWord
+                    postName: {
+                        [Op.like]: searchWord
+                    }
                 },
+                {
+                    postWriter: {
+                        [Op.like]: searchWord
+                    }
+                }
             ]
         }
     })
