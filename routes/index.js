@@ -162,6 +162,20 @@ router.get("/likeSearch/:searchWord", function(req, res, next){
       })
 })
 
+// 게시글 정렬
+router.get('/likeSearch', function(req, res, next) {
+    models.test.findAll({
+        order: [['postWriter', 'DESC']]
+    })
+    .then(result => {
+        res.json(result)
+    })
+    .catch(err => {
+        console.log(err);
+    })
+})
+
+
 // OR 검색
 router.get('/orSearch/:searchWord', function(req, res, next) {
     let searchWord = req.params.searchWord
