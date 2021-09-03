@@ -1,6 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
-
 // /* GET home page. */
 // router.get('/', function(req, res, next) {
 //   res.render('index', { title: 'Express' });
@@ -144,7 +141,7 @@ router.post('/reply/:postID', function(req, res, next) {
 
 
 
-// ------------------------------------------------
+// --------------------------------------------------------------
 
 // 검색 기능 경로등록 
 router.get("/likeSearch/:searchWord", function(req, res, next){
@@ -163,6 +160,27 @@ router.get("/likeSearch/:searchWord", function(req, res, next){
       .catch( err => {
           console.log(err)
       })
+})
+
+// OR 검색
+router.get('/orSearch/:searchWord', function(req, res, next) {
+    let searchWord = req.params.searchWord
+
+    models.test.findAll({
+        where : {
+            [Op.or]: [
+                {
+                    postName: searchWord
+                },
+            ]
+        }
+    })
+    .then (result => {
+        res.json(result)
+    })
+    .catch (err => {
+        console.log(err)
+    })
 })
 
 module.exports = router;
