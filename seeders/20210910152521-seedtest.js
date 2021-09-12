@@ -2,15 +2,19 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+
+    let seeding = [];
+    for (let x = 0; x < 10; x++) {
+      let obj = {
+        email: "seed" + x + "@seeding.com",
+        name: "seeding" + x,
+        password: "0000",
+        createdAt : new Date().toISOString().replace(/T/,'  ').replace(/\..+/, ''),
+        updatedAt : new Date().toISOString().replace(/T/,'  ').replace(/\..+/, '')
+      }
+      seeding.push(obj);
+    }
+    return queryInterface.bulkInsert('users',datas, {});
   },
 
   down: async (queryInterface, Sequelize) => {
