@@ -9,10 +9,12 @@ const models         = require('./models/index.js');
 const session        = require('express-session');
 const methodOverride = require('method-override');
 
-
+// upload를 위한 라우터 등록
 const indexRouter    = require('./routes/index');
 const usersRouter    = require('./routes/users');
 const uploadRouter   = require('./routes/upload');
+//upload 추가
+const fileUploadRouter = require('/routes/uploadBoard');
 
 const app = express();
 
@@ -45,11 +47,12 @@ app
 }))
   .use(express.static(path.join(__dirname, 'public')))
   
-
   .use('/', indexRouter)
   .use('/user', usersRouter)
 
+
 // multer등록
+  .use('/uploadBoard', fileUploadRouter)
   .use('/upload', uploadRouter)
   .use('/upload', express.static('uploads'))
 // static 파일이 접근할 라우터 path설정 
