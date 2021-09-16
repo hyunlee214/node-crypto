@@ -53,6 +53,7 @@ router.get('/board', async function(req, res, next) {
     });
   });
 
+
 // BOARD 데이터 추가 구현 - Sequelize사용
 router.post('/board', function(req, res, next) {
     let body = req.body;
@@ -69,6 +70,7 @@ router.post('/board', function(req, res, next) {
             console.log('data add failed');
         })
 });
+
 
 // 데이터 수정 구현
 router.get('/board/:id', function(req, res, next) {
@@ -106,6 +108,7 @@ router.put('/board/:id', function(req, res, next) {
         });
 });
 
+
 //데이터 삭제 구현
 router.delete('/board/:id', function(req, res, next) {
     let postID = req.params.id;
@@ -138,7 +141,6 @@ router.post('/reply/:postID', function(req, res, next) {
         console.log(err);
     });
 })
-
 
 
 // --------------------------------------------------------------

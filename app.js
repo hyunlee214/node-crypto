@@ -10,13 +10,13 @@ const session        = require('express-session');
 const methodOverride = require('method-override');
 
 // upload를 위한 라우터 등록
-const indexRouter       = require('./routes/index');
-const usersRouter       = require('./routes/users');
-const uploadRouter      = require('./routes/upload');
+const indexRouter         = require('./routes/index');
+const usersRouter         = require('./routes/users');
+const uploadRouter        = require('./routes/upload');
 //upload 추가
-const indexRouter2       = require('/routes/index');
-const usersRouter2      = require('/routes/users');
-const fileUploadRouter  = require('/routes/uploadBoard');
+const indexRouter2        = require('/routes/index');
+const usersRouter2        = require('/routes/users');
+const fileUploadRouter    = require('/routes/uploadBoard');
 
 const app = express();
 
