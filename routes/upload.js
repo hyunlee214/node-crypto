@@ -12,9 +12,10 @@ let stroage   = multer.diskStorage({
   }
 })
 
-let upload    = multer({ storage: stroage });
+let upload = multer({ storage: stroage });
 
-
+// 업로드 경로 : localhost:3232/upload/page
+// 업로드 완료 시 경로 : localhost:3232/upload/create
 router.get('/page', function(req, res, next) {
   res.render('multer')
 });
