@@ -14,9 +14,6 @@ const indexRouter         = require('./routes/index');
 const usersRouter         = require('./routes/users');
 const uploadRouter        = require('./routes/upload');
 //upload 추가
-const indexRouter2        = require('/routes/index');
-const usersRouter2        = require('/routes/users');
-const fileUploadRouter    = require('/routes/uploadBoard');
 
 const app = express();
 
@@ -51,16 +48,12 @@ app
   
   .use('/', indexRouter)
   .use('/user', usersRouter)
-  // new multer
-  .use('/', indexRouter2)
-  .use('/user', usersRouter2)
+  // new multer 등록 자리
 
 // multer등록
   .use('/upload', uploadRouter)
   .use('/upload', express.static('uploads'))
 
-  .use('/uploadBoard', fileUploadRouter)
-  .use('/uploadBoard', express.static('uploads'))
 // static 파일이 접근할 라우터 path설정 
 // (express.static 함수를 통해 제공되는 파일에 대한 가상 경로)
 
