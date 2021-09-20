@@ -206,4 +206,12 @@ router.get('/orSearch/:searchWord', function(req, res, next) {
     })
 })
 
+// product > edit 파일 페이지 렌더링
+// localhost:3232 페이지 렌더링
+router.get('/',function(req, res, next) {
+    res.render('product/edit', {
+        title: "testing edit"
+    });
+});
+
 module.exports = router;
