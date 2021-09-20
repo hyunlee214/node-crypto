@@ -13,7 +13,8 @@ const methodOverride = require('method-override');
 const indexRouter         = require('./routes/index');
 const usersRouter         = require('./routes/users');
 const uploadRouter        = require('./routes/upload');
-//upload 추가
+// test 추가
+const testRouter = require('./routes/test');
 
 const app = express();
 
@@ -53,6 +54,8 @@ app
 // multer등록
   .use('/upload', uploadRouter)
   .use('/upload', express.static('uploads'))
+// test 등록
+  .use('/test', testRouter)
 
 // static 파일이 접근할 라우터 path설정 
 // (express.static 함수를 통해 제공되는 파일에 대한 가상 경로)

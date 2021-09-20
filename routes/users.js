@@ -1,6 +1,6 @@
 const express   = require('express');
 const router    = express.Router();
-const crypto    = require('crypto');
+const crypto    = require('crypto');      // 해쉬 함수를 통한 암호화
 const models    = require('../models');
 
 router.get('/sign_up', function(req, res, next) {
