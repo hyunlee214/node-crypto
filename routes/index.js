@@ -1,16 +1,10 @@
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
+'use strict';
 
-// module.exports = router;
-
-
-// sequelize query - 유사 검색
 const express = require('express');
 const models = require('../models');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
+const nodemailer = require('nodemailer');
 
 const router = express.Router();
 
@@ -213,5 +207,30 @@ router.get('/',function(req, res, next) {
         title: "testing edit"
     });
 });
+
+
+//-----nodemailer사용--------//
+
+
+
+router.post('/nodemailerTest', function(req, res, next) {
+    let email = req.body.email;
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'email@gmail.com',
+            pass: 'password'
+        }
+    });
+    let mailOptions = {
+        from: 'email@gmail.com',
+        to: email,
+        subject: 'tset nodemailer',
+        text: 'testing'
+    };
+})
+
+
 
 module.exports = router;
