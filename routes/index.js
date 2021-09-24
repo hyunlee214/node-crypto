@@ -1,10 +1,10 @@
 'use strict';
 
-const express = require('express');
-const models = require('../models');
-const sequelize = require('sequelize');
-const Op = sequelize.Op;
-const nodemailer = require('nodemailer');
+const express       = require('express');
+const models        = require('../models');
+const sequelize     = require('sequelize');
+const Op            = sequelize.Op;
+const nodemailer    = require('nodemailer');
 
 const router = express.Router();
 
@@ -224,12 +224,22 @@ router.post('/nodemailerTest', function(req, res, next) {
         }
     });
     let mailOptions = {
-        from: 'email@gmail.com',
-        to: email,
+        from: 'fromemail@gmail.com',                
+        to: 'toemail@gmail.com',
         subject: 'tset nodemailer',
         text: 'testing'
     };
-})
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        }
+        else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    
+      res.redirect("/");
+    }) 
 
 
 
