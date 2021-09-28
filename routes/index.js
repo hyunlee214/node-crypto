@@ -202,6 +202,7 @@ router.get('/orSearch/:searchWord', function(req, res, next) {
 
 // product > edit 파일 페이지 렌더링
 // localhost:3232 페이지 렌더링
+
 router.get('/',function(req, res, next) {
     res.render('product/edit', {
         title: "testing edit"
@@ -211,7 +212,9 @@ router.get('/',function(req, res, next) {
 
 //-----nodemailer사용--------//
 
-
+// router.get('/nodemailerTest', function(req, res, next) {
+//     res.render('/board');
+// })
 
 router.post('/nodemailerTest', function(req, res, next) {
     let email = req.body.email;
@@ -225,7 +228,7 @@ router.post('/nodemailerTest', function(req, res, next) {
     });
     let mailOptions = {
         from: 'fromemail@gmail.com',                
-        to: 'toemail@gmail.com',
+        to: email,
         subject: 'tset nodemailer',
         text: 'testing'
     };
