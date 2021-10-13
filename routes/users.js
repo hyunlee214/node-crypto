@@ -20,7 +20,7 @@ router.post('/sign_up', async function(req, res, next) {
 
   let result = models.user.create({
     name: body.userName,  
-    email: body.userEmail,   
+    email: body.usrEmail,   
     password: hashPassword,                
     //password:body.password,                  
     salt: salt                    
