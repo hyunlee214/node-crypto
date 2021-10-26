@@ -1,6 +1,6 @@
 const express   = require('express');
 const router    = express.Router();
-const crypto    = require('crypto');      // 해쉬 함수를 통한 암호화
+const crypto    = require('crypto');
 const models    = require('../models');
 
 router.get('/sign_up', function(req, res, next) {
@@ -20,7 +20,7 @@ router.post('/sign_up', async function(req, res, next) {
 
   let result = models.user.create({
     name: body.userName,  
-    email: body.usrEmail,   
+    email: body.userEmail,   
     password: hashPassword,                
     //password:body.password,                  
     salt: salt                    
